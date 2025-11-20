@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TileDrop</string>
+    <string name="title_activity_main">TileDrop</string>
+    <string name="package_name">com.tpgames.tiledrop</string>
+    <string name="custom_url_scheme">com.tpgames.tiledrop</string>
+    <!-- Test AdMob App ID -->
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <!-- Production AdMob App ID (commented out) -->
+    <!-- <string name="admob_app_id">ca-app-pub-3742022551288656~1307869584</string> -->
+</resources>

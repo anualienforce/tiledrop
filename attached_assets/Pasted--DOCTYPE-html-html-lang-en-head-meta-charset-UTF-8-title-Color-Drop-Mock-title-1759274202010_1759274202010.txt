@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Drop Mock</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #50b9ff, #8b5dff);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+    }
+
+    .container {
+      margin-top: 20px;
+      width: 400px;
+    }
+
+    /* HUD */
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      border: 2px solid #e0e4ec;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .score-card {
+      width: 140px;
+    }
+    .score-label {
+      font-size: 12px;
+      color: #666;
+    }
+    .score-value {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .next-card {
+      width: 140px;
+    }
+    .next-tile, .upcoming-tiles {
+      margin-top: 5px;
+    }
+
+    .tile {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      border-radius: 8px;
+      border: 2px solid #555;
+    }
+
+    .tile.big { width: 60px; height: 60px; font-size: 22px; }
+    .tile.small { width: 40px; height: 40px; font-size: 16px; }
+
+    /* Grid */
+    .grid {
+      background: #f5f7fc;
+      border: 2px solid #dcdfe6;
+      border-radius: 20px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-gap: 10px;
+    }
+
+    .cell {
+      background: white;
+      border: 2px solid #d8dbe2;
+      border-radius: 10px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    /* Power-ups bar */
+    .powerups {
+      margin-top: 15px;
+      background: white;
+      border-radius: 12px;
+      border: 2px solid #e0e4ec;
+      padding: 10px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .powerup {
+      font-size: 24px;
+    }
+    .powerup-label {
+      font-size: 12px;
+      margin-top: 4px;
+      color: #444;
+    }
+
+    /* Colors */
+    .c1 { background:#FF4136; }
+    .c2 { background:#FF851B; }
+    .c3 { background:#FFDC00; color:#222; }
+    .c4 { background:#2ECC40; }
+    .c5 { background:#0074D9; }
+    .c6 { background:#B10DC9; }
+    .c7 { background:#39CCCC; }
+    .c8 { background:#F012BE; }
+    .c9 { background:#111; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="card score-card">
+        <div class="score-label">SCORE</div>
+        <div class="score-value">12,450</div>
+      </div>
+
+      <div class="card next-card">
+        <div class="score-label">NEXT</div>
+        <div class="next-tile">
+          <div class="tile big c4">4</div>
+        </div>
+        <div class="score-label" style="margin-top:8px;">UPCOMING</div>
+        <div class="upcoming-tiles">
+          <div class="tile small c7">7</div>
+          <div class="tile small c2">2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid">
+      <!-- Just sample filled cells for preview -->
+      <div class="cell c5">5</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell c7">7</div>
+      <div class="cell c3">3</div>
+      <div class="cell"></div>
+      <!-- (fill out 6x8 grid) -->
+      <!-- You can repeat 48 cells total -->
+      <!-- For brevity I'm only showing a few -->
+    </div>
+
+    <!-- Power-ups -->
+    <div class="powerups">
+      <div>
+        <div class="powerup">💣</div>
+        <div class="powerup-label">Bomb</div>
+      </div>
+      <div>
+        <div class="powerup">↔</div>
+        <div class="powerup-label">Row</div>
+      </div>
+      <div>
+        <div class="powerup">⇄</div>
+        <div class="powerup-label">Swap</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

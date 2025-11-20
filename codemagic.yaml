@@ -1,0 +1,39 @@
+workflows:
+  ios_simulator_capacitor:
+    name: iOS Simulator Build (Xcode 15)
+    instance_type: mac_mini_m2
+    max_build_duration: 30
+
+    environment:          # Xcode 15.x on Codemagic
+      node: stable        # or your Node version
+
+    scripts:
+      - name: Install Node deps
+        script: |
+          npm install
+
+      - name: Build web assets
+        script: |
+          npm run build
+
+      - name: Sync Capacitor iOS
+        script: |
+          npx cap sync ios
+
+      - name: Install CocoaPods
+        script: |
+          cd ios/App
+          pod install
+
+      - name: Build .app for iOS Simulator
+        script: |
+          cd ios/App
+          xcodebuild \
+            -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -derivedDataPath ../build
+
+    artifacts:
+      - ios/build/Build/Products/Debug-iphonesimulator/*.app
