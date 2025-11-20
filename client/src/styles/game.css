@@ -1,26 +1,35 @@
 /* Container and layout */
 .app-container {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
   width: 100%;
-  height: 100vh;
-  height: 100dvh; /* Dynamic viewport height for mobile */
+  min-height: 100vh;
+  min-height: 100dvh;
   background: linear-gradient(135deg, #1e3a8a 0%, #0891b2 50%, #06b6d4 100%);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
+  flex-direction: column;      /* make column layout here itself */
+  justify-content: flex-start; /* ⬅ from center to top */
+  align-items: stretch;        /* ⬅ full-width instead of centering */
+
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
   box-sizing: border-box;
+
   overflow-x: hidden;
   overflow-y: auto;
+
   position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
 }
+
 
 .app-container::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -75,7 +84,7 @@
 
 .card::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -190,7 +199,7 @@
 
 .daily-challenge::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -238,7 +247,7 @@
 
 .challenge-progress-bar::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -258,7 +267,7 @@
 
 .challenge-progress-fill::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -304,7 +313,7 @@
 
 /* Score Popup */
 .score-popup {
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -370,7 +379,7 @@
 
 .tile::after {
   content: '';
-  position: relative;
+  position: absolute;
   top: 3px;
   left: 50%;
   transform: translateX(-50%);
@@ -451,7 +460,7 @@
 /* Premium glossy highlight - Enhanced */
 .tile-content::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -471,7 +480,7 @@
 /* Subtle shimmer effect */
 .tile-content::after {
   content: '';
-  position: relative;
+  position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
@@ -798,7 +807,7 @@
 
 .tile-clear-power::before {
   content: '';
-  position: relative;
+  position: absolute;
   inset: -20px;
   background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, transparent 70%);
   border-radius: 50%;
@@ -882,7 +891,7 @@
 
 .tile-clear-uber::before {
   content: '';
-  position: relative;
+  position: absolute;
   inset: -30px;
   background: radial-gradient(circle, rgba(255, 20, 147, 0.7) 0%, rgba(255, 100, 200, 0.3) 50%, transparent 70%);
   border-radius: 50%;
@@ -893,7 +902,7 @@
 
 .tile-clear-uber::after {
   content: '';
-  position: relative;
+  position: absolute;
   inset: -20px;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
   border-radius: 50%;
@@ -986,7 +995,7 @@
 
 .grid::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -998,7 +1007,7 @@
 
 .grid::after {
   content: '';
-  position: relative;
+  position: absolute;
   inset: -1px;
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(99, 102, 241, 0.1) 100%);
   border-radius: 24px;
@@ -1030,7 +1039,7 @@
 
 .cell::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -1145,7 +1154,7 @@
 
 .powerup-container::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -1738,7 +1747,8 @@
 
 /* Game Over Modal */
 .game-over-overlay {
-  position: relative; top: 0;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1796,7 +1806,7 @@
 
 .game-over-modal::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -1807,7 +1817,7 @@
 
 .game-over-modal::after {
   content: '';
-  position: relative;
+  position: absolute;
   top: 6px;
   left: 0;
   right: 0;
@@ -1859,7 +1869,7 @@
 
 .final-score::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -1981,7 +1991,7 @@
 
 .share-button::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -2030,7 +2040,7 @@
 
 .restart-button::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
@@ -2041,7 +2051,7 @@
 
 .restart-button::after {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -2209,7 +2219,8 @@
     width: 100vw;
     height: 100vh;
     height: 100dvh; /* Dynamic viewport height for mobile address bar */
-    position: relative ;  top: 0;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -2735,7 +2746,7 @@ html {
 
 /* Mute Button */
 .mute-button {
-  position: relative;
+  position: absolute;
   top: 20px;
   right: 20px;
   width: 48px;
@@ -2892,8 +2903,8 @@ html {
 }
 
 @keyframes rainbow-shift {
-  0%, 100% { background-position: relative}
-  50% { background-position: relative; }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .tile.multiplier {
@@ -2905,7 +2916,7 @@ html {
 
 .tile.multiplier::after {
   content: '★';
-  position: relative;
+  position: absolute;
   top: 2px;
   right: 2px;
   font-size: 12px;
@@ -2920,7 +2931,7 @@ html {
 
 .tile.blocker::after {
   content: '🔒';
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -2975,9 +2986,10 @@ html {
 
 @keyframes rainbow-shift {
   0% {
-    background-position: relative  }
+    background-position: 0% 50%;
+  }
   100% {
-    background-position: relative;
+    background-position: 200% 50%;
   }
 }
 
@@ -3053,7 +3065,7 @@ html {
 
 .icon-button::before {
   content: '';
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -3076,7 +3088,7 @@ html {
 
 /* Pause Overlay */
 .pause-overlay {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -3281,8 +3293,8 @@ html {
 
 /* Particles */
 .particles-container {
-  position: relative;
-   top: 0;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -3292,7 +3304,7 @@ html {
 }
 
 .particle {
-  position: relative;
+  position: absolute;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -3365,7 +3377,8 @@ html {
     height: 100dvh; /* Dynamic viewport height */
     overflow-x: hidden;
     overflow-y: auto;
-    position: relative;   top: 0;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
