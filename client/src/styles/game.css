@@ -2211,19 +2211,19 @@
 /* Mobile optimizations */
 @media (max-width: 480px) {
   .app-container {
-    padding: 0;
     align-items: flex-start;
     overflow-x: hidden;
     overflow-y: auto;
-    width: 100%;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh; /* Dynamic viewport height for mobile address bar */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+
+    /* keep safe areas */
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(70px, env(safe-area-inset-bottom)); /* if you want extra for banner ad */
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
   }
 
   .game-over-modal {
@@ -3370,18 +3370,18 @@ html {
 /* Mobile and Tablet layout adjustments - ensure perfect fit */
 @media (max-width: 768px) {
   .app-container {
-    padding: 0;
-    width: 100%;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh; /* Dynamic viewport height */
+    min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
     overflow-y: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
+
+    /* again, keep safe-area padding */
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(70px, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
   }
   
   .mobile-scale-wrapper {
