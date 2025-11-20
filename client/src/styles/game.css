@@ -1738,7 +1738,7 @@
 
 /* Game Over Modal */
 .game-over-overlay {
-  position: relative top: 0;
+  position: relative; top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -2209,7 +2209,7 @@
     width: 100vw;
     height: 100vh;
     height: 100dvh; /* Dynamic viewport height for mobile address bar */
-    position: relative   top: 0;
+    position: relative ;  top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -3281,7 +3281,8 @@ html {
 
 /* Particles */
 .particles-container {
-  position: relative top: 0;
+  position: relative;
+   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -3364,7 +3365,7 @@ html {
     height: 100dvh; /* Dynamic viewport height */
     overflow-x: hidden;
     overflow-y: auto;
-    position: relative   top: 0;
+    position: relative;   top: 0;
     left: 0;
     right: 0;
     bottom: 0;
