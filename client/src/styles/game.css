@@ -485,7 +485,7 @@ html, body, #root {
   width: 64px;
   height: 64px;
   font-size: 32px;
-  touch-action: auto;
+  touch-action: none;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
 }
 
@@ -1429,8 +1429,8 @@ html, body, #root {
     max-width: 550px;
     margin: 0 auto;
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
   }
 
   .button-bar {
@@ -1670,8 +1670,8 @@ html, body, #root {
   .game-wrapper { 
     padding: 8px 6px 70px 6px; 
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling *//* Extra bottom padding for banner ad */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling *//* Extra bottom padding for banner ad */
   }
   
   .hud {
@@ -1699,8 +1699,8 @@ html, body, #root {
     max-width: 92vw;
     margin: 0 auto;
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
   }
   
   .hud {
@@ -2329,7 +2329,7 @@ html, body, #root {
   .app-container {
     align-items: flex-start;
     overflow-x: hidden;
-    overflow-y: visible; /* let the page scroll, not app container */
+    overflow-y: hidden; /* let the page scroll, not app container */
     width: 100vw;
     min-height: 100vh;
     min-height: 100dvh;
@@ -2387,8 +2387,8 @@ html, body, #root {
     padding: 60px 3px 3px 3px;
     min-height: auto;
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
   }
 
   .hud {
@@ -2573,8 +2573,8 @@ html, body, #root {
     display: flex;
     flex-direction: column;
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
   }
   
   .grid-container {
@@ -2812,8 +2812,8 @@ html, body, #root {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
 }
 
 /* Keyboard Navigation Focus Styles */
@@ -2868,8 +2868,8 @@ html {
   
   .game-wrapper {
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
     padding-left: max(8px, calc(8px + env(safe-area-inset-left)));
     padding-right: max(8px, calc(8px + env(safe-area-inset-right)));
     padding-bottom: max(70px, calc(70px + env(safe-area-inset-bottom))); /* Space for banner ad */
@@ -3439,8 +3439,8 @@ html {
 .game-wrapper {
   margin-top: 2px;
   overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
 }
 
 /* Particles */
@@ -3528,7 +3528,7 @@ html {
     min-height: 100vh;
     min-height: 100dvh;
   overflow-x: hidden;
-  overflow-y: visible;
+  overflow-y: hidden;
     position: relative;
 
     /* again, keep safe-area padding */
@@ -3551,12 +3551,12 @@ html {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: visible;
+    overflow-y: hidden;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
   }
   
   /* Better touch targets for tablets */
@@ -3625,8 +3625,8 @@ html {
   .game-wrapper {
     padding: 20px 8px 70px 8px;
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */ /* Extra bottom padding for banner ad */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */ /* Extra bottom padding for banner ad */
   }
 }
 
@@ -3721,8 +3721,8 @@ html {
   
   .game-wrapper {
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
     padding: 18px 6px 70px 6px; /* Extra bottom padding for banner ad */
   }
 }
@@ -3879,8 +3879,8 @@ html {
 @media (max-width: 360px) {
   .game-wrapper {
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
     padding: 8px 6px 110px 6px; /* keep room for sticky controls */
   }
 
@@ -3948,8 +3948,8 @@ html {
 @media (max-width: 320px) {
   .game-wrapper {
         overflow-x: hidden;
-  overflow-y: visible; /* Allow content to extend */
-  touch-action: auto; /* Allow normal scrolling */
+  overflow-y: hidden; /* Allow content to extend */
+  touch-action: none; /* Allow normal scrolling */
     padding: 6px 4px 120px 4px;
   }
 
