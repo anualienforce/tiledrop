@@ -41,7 +41,6 @@ const PowerUps: React.FC<PowerUpsProps> = ({ powerUps, onPowerUpUse, gameOver, s
 
   const handleTouchStart = (e: React.TouchEvent, type: string, count: number) => {
     if (gameOver || count === 0) return;
-    e.preventDefault(); // Prevent delay from touch
     onPowerUpUse(type);
   };
 

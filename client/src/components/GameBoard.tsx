@@ -154,7 +154,6 @@ const GameBoard: React.FC<GameBoardProps> = ({
   
   const handleTouchStart = (e: React.TouchEvent, col: number) => {
     if (gameOver || isPaused) return;
-    e.preventDefault(); // Prevent delay from touch
     onColumnClick(col);
   };
 

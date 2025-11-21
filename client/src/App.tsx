@@ -451,7 +451,7 @@ function App() {
             }
             handleDragStart(e);
           }}
-          style={{ touchAction: 'none' }}
+          
         >
         <HUD 
           score={score}

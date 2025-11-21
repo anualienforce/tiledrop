@@ -38,7 +38,7 @@ html, body, #root {
   left: auto;
   right: auto;
   bottom: auto;
-  touch-action: pan-y; /* prioritize vertical scrolling gestures */
+  touch-action: auto; /* prioritize vertical scrolling gestures */
 }
 
 
@@ -75,6 +75,9 @@ html, body, #root {
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
 }
 
 /* HUD - Premium Design */
@@ -419,6 +422,7 @@ html, body, #root {
   width: 64px;
   height: 64px;
   font-size: 32px;
+  touch-action: auto;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
 }
 
@@ -1021,6 +1025,9 @@ html, body, #root {
   }
 
   .game-wrapper {
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
     padding-bottom: calc(var(--safe-bottom, 12px) + 90px); /* ensure space for sticky controls */
   }
 }
@@ -1270,6 +1277,9 @@ html, body, #root {
   max-width: 100%;
   box-sizing: border-box;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
 }
 
 .hud {
@@ -1372,6 +1382,9 @@ html, body, #root {
     padding: 24px 20px 90px 20px;
     max-width: 550px;
     margin: 0 auto;
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
   }
 
   .button-bar {
@@ -1609,7 +1622,10 @@ html, body, #root {
 /* Very small phones */
 @media (max-width: 360px) {
   .game-wrapper { 
-    padding: 8px 6px 70px 6px; /* Extra bottom padding for banner ad */
+    padding: 8px 6px 70px 6px; 
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling *//* Extra bottom padding for banner ad */
   }
   
   .hud {
@@ -1636,6 +1652,9 @@ html, body, #root {
     padding: 14px 18px 80px 18px; /* Extra bottom padding for banner ad */
     max-width: 92vw;
     margin: 0 auto;
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
   }
   
   .hud {
@@ -2321,6 +2340,9 @@ html, body, #root {
   .game-wrapper {
     padding: 60px 3px 3px 3px;
     min-height: auto;
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
   }
 
   .hud {
@@ -2504,6 +2526,9 @@ html, body, #root {
     min-height: calc(100vh - 40px);
     display: flex;
     flex-direction: column;
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
   }
   
   .grid-container {
@@ -2740,6 +2765,9 @@ html, body, #root {
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
 }
 
 /* Keyboard Navigation Focus Styles */
@@ -2762,7 +2790,8 @@ button:focus-visible,
 /* Prevent overscroll on mobile */
 body {
   /* Allow normal overscroll behavior so scrolling works across platforms */
-  overscroll-behavior: auto;
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: none; /* Prevent horizontal bounce */
   overflow-x: hidden;
 }
 
@@ -2792,6 +2821,9 @@ html {
   }
   
   .game-wrapper {
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
     padding-left: max(8px, calc(8px + env(safe-area-inset-left)));
     padding-right: max(8px, calc(8px + env(safe-area-inset-right)));
     padding-bottom: max(70px, calc(70px + env(safe-area-inset-bottom))); /* Space for banner ad */
@@ -3343,6 +3375,9 @@ html {
 
 .game-wrapper {
   margin-top: 2px;
+  overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
 }
 
 /* Particles */
@@ -3416,9 +3451,11 @@ html {
   transition: all 0.15s ease;
 }
 
-/* Touch action for drag-enabled tiles */
+/* Touch action for drag-enabled tiles
+   Allow vertical panning so the page can scroll while still enabling
+   horizontal interactions for drag logic. */
 .tile.big {
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 /* Mobile and Tablet layout adjustments - ensure perfect fit */
@@ -3454,6 +3491,9 @@ html {
     overflow-y: visible;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
   }
   
   /* Better touch targets for tablets */
@@ -3520,7 +3560,10 @@ html {
   }
   
   .game-wrapper {
-    padding: 20px 8px 70px 8px; /* Extra bottom padding for banner ad */
+    padding: 20px 8px 70px 8px;
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */ /* Extra bottom padding for banner ad */
   }
 }
 
@@ -3614,6 +3657,9 @@ html {
   }
   
   .game-wrapper {
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
     padding: 18px 6px 70px 6px; /* Extra bottom padding for banner ad */
   }
 }
@@ -3769,6 +3815,9 @@ html {
 /* Extra tiny and narrow phones - make everything compact and allow scrolling */
 @media (max-width: 360px) {
   .game-wrapper {
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
     padding: 8px 6px 110px 6px; /* keep room for sticky controls */
   }
 
@@ -3835,6 +3884,9 @@ html {
 /* Very small phones (<=320px) - most compact layout */
 @media (max-width: 320px) {
   .game-wrapper {
+	overflow-x: hidden;
+  overflow-y: visible; /* Allow content to extend */
+  touch-action: auto; /* Allow normal scrolling */
     padding: 6px 4px 120px 4px;
   }
 
