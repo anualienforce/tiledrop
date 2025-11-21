@@ -13,15 +13,20 @@
     <meta name="theme-color" content="#1e3a8a" />
     
     <style>
-      /* Prevent initial flash and ensure fullscreen */
+      /* Prevent initial flash and ensure fullscreen while allowing vertical scroll
+         Removed `position: fixed` and `overflow: hidden` so the page can scroll
+         (important on small screens where UI may be taller than viewport). */
       html, body {
         margin: 0;
         padding: 0;
         width: 100%;
+        min-height: 100%;
         height: 100%;
-        overflow: hidden;
-        position: fixed;
-        overscroll-behavior: none;
+        overflow-x: hidden;    /* avoid horizontal scroll */
+        overflow-y: auto;      /* allow vertical scrolling */
+        position: relative;    /* allow normal flow */
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+        overscroll-behavior: contain; /* avoid accidental navigation gestures */
       }
     </style>
   </head>

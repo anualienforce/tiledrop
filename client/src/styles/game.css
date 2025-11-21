@@ -1,11 +1,24 @@
 /* Container and layout */
+/* Ensure the document (html/body/#root) handles page scrolling so the whole UI scrolls
+   instead of trapping scroll inside `.app-container`. */
+html, body, #root {
+  /* Allow the document to grow naturally so the page can scroll when content
+     exceeds the viewport. Keep a reasonable minimum height for legacy layout. */
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .app-container {
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 
+  /* Prefer the JS-set --vh for mobile sizing, but do NOT force the app to match
+    the viewport height so the document can scroll; allow content to determine
+    page height. */
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: auto;
   background: linear-gradient(135deg, #1e3a8a 0%, #0891b2 50%, #06b6d4 100%);
   display: flex;
   flex-direction: column;      /* make column layout here itself */
@@ -16,14 +29,16 @@
   padding-bottom: var(--safe-bottom);
   box-sizing: border-box;
 
+  /* don't trap scrolling here; let the document scroll the whole UI */
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;
 
   position: relative;
   top: auto;
   left: auto;
   right: auto;
   bottom: auto;
+  touch-action: pan-y; /* prioritize vertical scrolling gestures */
 }
 
 
@@ -51,7 +66,8 @@
 
 .game-wrapper {
   width: 100%;
-  min-height: 100%;
+  /* let wrapper expand but prefer viewport-aware min height */
+  min-height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -971,10 +987,12 @@
 
 /* Grid - Premium Design */
 .grid-container {
-  flex: 1;
+  /* Keep the grid at its natural size so the whole page can scroll.
+     Avoid flex:1 which forces the container to stretch and can create
+     internal scroll areas on short viewports. */
+  flex: none;
   display: flex;
   flex-direction: column;
-  min-height: 0;
   padding: 0 4px;
 }
 
@@ -990,7 +1008,21 @@
   box-shadow: 0 4px 24px rgba(99, 102, 241, 0.14);
   backdrop-filter: blur(12px);
   position: relative;
+  /* allow grid to scroll if viewport is short */
   overflow: hidden;
+}
+
+/* Short/landscape mobile screens: make grid scrollable to avoid clipping */
+@media (max-height: 700px) {
+  /* Keep grid its actual size; let the document scroll instead of the grid. */
+  .grid {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .game-wrapper {
+    padding-bottom: calc(var(--safe-bottom, 12px) + 90px); /* ensure space for sticky controls */
+  }
 }
 
 .grid::before {
@@ -1131,6 +1163,25 @@
     0 2px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 2px rgba(255, 255, 255, 1);
   backdrop-filter: blur(10px);
+}
+
+/* Keep power-ups accessible on short screens: stick near bottom when possible */
+.powerups {
+  position: sticky;
+  bottom: calc(var(--safe-bottom, 12px) + 8px);
+  z-index: 50;
+}
+
+/* On short or narrow viewports make powerups part of the normal document flow so
+   users can scroll down to reach them. Sticky can pin them offscreen on very
+   short screens. This ensures the bottom controls are reachable by vertical scroll. */
+@media (max-height: 760px), (max-width: 480px) {
+  .powerups {
+    position: relative !important;
+    bottom: auto !important;
+    margin-bottom: calc(var(--safe-bottom, 12px) + 24px);
+    z-index: 1;
+  }
 }
 
 .powerup-container {
@@ -1760,8 +1811,8 @@
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 80px;
+  align-items: center; /* center modals vertically when space allows */
+  padding: 20px; /* use small padding so overlay content can scroll on short screens */
   z-index: 1000;
 
   /* Smooth fade-in animation */
@@ -1788,11 +1839,11 @@
   background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
   border: none !important;
   border-radius: 32px;
-  padding: 32px 24px;
+  padding: 24px;
   text-align: center;
-  max-width: 360px;
-  width: 90%;
-  max-height: 90vh;
+  max-width: 92vw;
+  width: 100%;
+  max-height: calc(var(--vh, 1vh) * 90);
   overflow-y: auto;
   box-shadow: 
     0 24px 72px rgba(0, 0, 0, 0.4),
@@ -2213,7 +2264,7 @@
   .app-container {
     align-items: flex-start;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: visible; /* let the page scroll, not app container */
     width: 100vw;
     min-height: 100vh;
     min-height: 100dvh;
@@ -2456,7 +2507,8 @@
   }
   
   .grid-container {
-    flex: 1;
+    /* Keep natural size on tablet portrait so document-level scrolling works */
+    flex: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2670,7 +2722,8 @@
   }
 
   .grid-container {
-    flex: 1;
+    /* Don't force the grid-container to stretch in landscape; let the page scroll */
+    flex: none;
   }
 
   .powerups {
@@ -2708,7 +2761,8 @@ button:focus-visible,
 
 /* Prevent overscroll on mobile */
 body {
-  overscroll-behavior: none;
+  /* Allow normal overscroll behavior so scrolling works across platforms */
+  overscroll-behavior: auto;
   overflow-x: hidden;
 }
 
@@ -3373,8 +3427,8 @@ html {
     width: 100vw;
     min-height: 100vh;
     min-height: 100dvh;
-    overflow-x: hidden;
-    overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
     position: relative;
 
     /* again, keep safe-area padding */
@@ -3397,7 +3451,7 @@ html {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: visible;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
@@ -3710,4 +3764,112 @@ html {
     width: 2rem !important;
     height: 2rem !important;
   }
+}
+
+/* Extra tiny and narrow phones - make everything compact and allow scrolling */
+@media (max-width: 360px) {
+  .game-wrapper {
+    padding: 8px 6px 110px 6px; /* keep room for sticky controls */
+  }
+
+  .button-bar {
+    padding: 6px 8px;
+    gap: 6px;
+    margin-bottom: -12px;
+  }
+
+  .game-title {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .icon-button {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+  }
+
+  .coin-display {
+    padding: 4px 6px;
+    height: 28px;
+  }
+
+  .tile.big {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .tile.small {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .grid {
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .powerups {
+    padding: 8px 6px;
+    margin-bottom: 100px;
+  }
+
+  .game-over-modal {
+    padding: 12px;
+    max-height: calc(var(--vh, 1vh) * 92);
+    width: 96vw;
+  }
+
+  /* Make grid horizontally scrollable on extremely narrow screens so tiles keep usable size */
+  .grid-container {
+    overflow-x: auto;
+  }
+
+  .grid {
+    min-width: 260px; /* allow horizontal scroll instead of tiny tiles */
+  }
+}
+
+/* Very small phones (<=320px) - most compact layout */
+@media (max-width: 320px) {
+  .game-wrapper {
+    padding: 6px 4px 120px 4px;
+  }
+
+  .game-title {
+    font-size: 14px;
+  }
+
+  .icon-button {
+    width: 26px;
+    height: 26px;
+  }
+
+  .coin-display {
+    padding: 3px 6px;
+    height: 28px;
+  }
+
+  .tile.big {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .tile.small {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .coin-amount { font-size: 12px; }
+
+  .column-indicator { font-size: 16px; padding: 4px; }
+
+  .powerups { padding: 6px 4px; gap: 6px; }
+
+  /* ensure modals remain scrollable inside viewport */
+  .game-over-modal { max-height: calc(var(--vh,1vh) * 88); }
 }

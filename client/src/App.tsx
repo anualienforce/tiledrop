@@ -291,8 +291,22 @@ function App() {
     const handleMove = (moveEvent: PointerEvent) => {
       const deltaX = Math.abs(moveEvent.clientX - startX);
       const deltaY = Math.abs(moveEvent.clientY - startY);
-      
-      // Only start showing drag if moved beyond threshold
+
+      // If the user is mainly scrolling vertically (common on mobile), abort drag
+      // i.e. if vertical movement exceeds threshold and is greater than horizontal.
+      if (deltaY > MOVE_THRESHOLD && deltaY > deltaX) {
+        // cleanup and allow natural page scrolling
+        setIsDragging(false);
+        setDragPosition(null);
+        setDragStartPos(null);
+        setHoveredColumn(null);
+        window.removeEventListener('pointermove', handleMove);
+        window.removeEventListener('pointerup', handleEnd);
+        window.removeEventListener('pointercancel', handleEnd);
+        return;
+      }
+
+      // Only start showing drag if moved beyond threshold (and not a vertical scroll)
       if (deltaX > MOVE_THRESHOLD || deltaY > MOVE_THRESHOLD) {
         hasMoved = true;
         setIsDragging(true);
