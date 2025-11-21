@@ -554,6 +554,9 @@ function App() {
           </div>
         )}
       </div>
+
+      {/* Ad space placeholder - reserves space for AdMob banner */}
+      <div className="ad-space-placeholder" aria-hidden="true"></div>
       </div>
 
       {/* Drag Ghost - follows pointer during drag - OUTSIDE scaled wrapper */}
